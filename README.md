@@ -5,14 +5,16 @@ The Dashboard is located at: https://github.com/soonaverse/dashboard-env/blob/ma
 
 The Hornet Environment adds to the current Stardust Hornet environemt to add some configuration to the .env file to make administration easier and the transition from test to prod environemts more standard.
 
-Node exporter docker contain has been added to support dashboard panels that show CPU/Disk/Load and other node metrics. This can be disabled by editing the .env file and removing the `dc-node-exporter.yml` from the following line:
+The `node-exporter` docker container has been added as a separate compose file to support dashboard panels that show CPU/Disk/Load and other node metrics. This can be disabled by editing the .env file and removing the `dc-node-exporter.yml` from the following line:
 ```
 COMPOSE_FILE=docker-compose.yml:dc-node-exporter.yml:dc-hornet-api-loadbal.yml
 ```
 
-Also each optional INX plugin and prometheus and grafana can be enabled and disabled by adding them or removing them from the following line in the .env file:
+Prometheus metrics for Traefik have been enabled and added to the Prometheus.yml file.
+
+Each optional INX plugin and prometheus and grafana can be enabled and disabled by adding them or removing them from the following line in the .env file:
 ```
 COMPOSE_PROFILES="indexer,dashboard,prometheus,grafana,traefik"
 ```
 
-This environment is intendeed to be a proposed implementation using the current Stardust Hornet configuration. It is set up to show different options of the docker environment but will not be maintained or supported other than to provide a template for others to add to their own Hornet node installations. This is not intended to be an automatic Hornet installation.
+***This environment is intendeed to be a template implementation for users to borrow ideas from. It is based on the current Stardust Hornet configuration which may change and updates to this repository may not be timely.***
