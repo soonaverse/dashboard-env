@@ -1,0 +1,12 @@
+version: '3'
+services:
+
+  hornet:
+    ports:
+      - "9029:9029/tcp"
+    labels:
+        #INX connection for remote debugging - remove from prod
+      - "traefik.http.routers.inx.rule=Host(`${HORNET_HOST}`) && PathPrefix(`/inx`)"
+      - "traefik.http.routers.inx.entrypoints=websecure"
+      - "traefik.http.routers.inx.tls=true"
+      - "traefik.http.services.inx.loadbalancer.server.port=9029"      

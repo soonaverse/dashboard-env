@@ -1,0 +1,11 @@
+version: '3'
+services:
+
+  hornet:
+    labels:
+        #Rate Limit and Buffering for API
+      - "traefik.http.middlewares.buffer.buffering.maxRequestBodyBytes=20000000"
+      - "traefik.http.middlewares.buffer.buffering.retryExpression=IsNetworkError() && Attempts() < 2"
+      - "traefik.http.middlewares.ratelimit.ratelimit.average=1000"
+      - "traefik.http.middlewares.ratelimit.ratelimit.burst=10000"
+      - "traefik.http.routers.hornet.middlewares=redirect-dashboard,ratelimit,buffer"
