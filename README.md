@@ -17,4 +17,6 @@ Each optional INX plugin and prometheus and grafana can be enabled and disabled 
 COMPOSE_PROFILES="indexer,dashboard,prometheus,grafana,traefik"
 ```
 
+The `dc-hornet-api-loadbal.yml` compose file enables buffering and ratelimiting for Traefik on the Hornet REST API. This allows network errors to retry and seems to be more robust for high loads than the generic Traefik configuration. 
+
 ***This environment is intendeed to be a template implementation for users to borrow ideas from. It is based on the current Stardust Hornet configuration which may change and updates to this repository may not be timely.***
